@@ -67,3 +67,21 @@ func DownloadString(url string) (string, error) {
 
 	return  "", errors.New("Failed to download file")
 }
+
+func Download(url string) ([]byte, error){
+	var client http.Client
+	resp, err := client.Get(url)
+	if err != nil {
+		return  nil, err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode == 200 { // OK
+		bodyBytes, err2 := ioutil.ReadAll(resp.Body)
+		if err2 != nil {
+			return  nil, err2
+		}
+		return bodyBytes, nil
+	}
+
+	return  nil, errors.New("Failed to download file")
+}
