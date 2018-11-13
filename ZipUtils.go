@@ -1,11 +1,11 @@
 package goutils
 
 import (
-	"github.com/mholt/archiver"
 	"fmt"
+	"github.com/mholt/archiver"
 )
 
-func ExtractZip(zip string, dest string){
+func ExtractZip(zip string, dest string) {
 	fmt.Println("Extracting " + zip)
-	archiver.Zip.Open(zip, dest)
+	archiver.DefaultZip.Unarchive(zip, dest)
 }
